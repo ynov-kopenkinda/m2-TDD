@@ -1,27 +1,30 @@
 export function addStrings(values) {
   if (values === "") return 0;
-  let cleanValue = values.trimStart();
-  let extraDelimiter;
+  const allowedDelimiters = [",", "\n"];
+  let cleanValue = values;
   const hasExtraDelimeter = /\/\/(.*)\n/.test(cleanValue);
   if (hasExtraDelimeter) {
     cleanValue = cleanValue.slice(2);
     const nextIndex = cleanValue.indexOf("\n");
-    extraDelimiter = cleanValue.slice(0, nextIndex);
-    values = cleanValue.slice(nextIndex + 1);
+    const extraDelimiter = cleanValue.slice(0, nextIndex);
+    allowedDelimiters.length = 0;
+    allowedDelimiters.push(extraDelimiter);
+    cleanValue = cleanValue.slice(nextIndex + 1);
   }
   if (
-    values.endsWith(",") ||
-    values.endsWith("\n") ||
-    (extraDelimiter && values.endsWith(extraDelimiter))
+    allowedDelimiters.length == 0 ||
+    allowedDelimiters.some((delimiter) => cleanValue.endsWith(delimiter))
   ) {
     throw new Error("Invalid input");
   }
-  let unformValues = values.replace(/\n/g, ",");
-  if (extraDelimiter) {
-    unformValues = unformValues.replace(new RegExp(extraDelimiter, "g"), ",");
-  }
-  const numberStrings = unformValues.split(",");
+  const numberStrings = allowedDelimiters.reduce(
+    (acc, delimiter) => acc.flatMap((x) => x.split(delimiter)),
+    [cleanValue]
+  );
   const numbers = numberStrings.map((x) => +x);
+  if (numbers.some((x) => Number.isNaN(x))) {
+    throw new Error("Invalid input");
+  }
   const summ = numbers.reduce((a, b) => a + b, 0);
   return summ;
 }
