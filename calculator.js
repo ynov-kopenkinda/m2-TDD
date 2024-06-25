@@ -22,7 +22,7 @@ export function addStrings(values) {
     [cleanValue]
   );
   const numbers = numberStrings.map((x) => +x);
-  if (numbers.some((x) => Number.isNaN(x))) {
+  if (numbers.some((x) => Number.isNaN(x)) || numbers.some((x) => x < 0)) {
     throw new Error("Invalid input");
   }
   const summ = numbers.reduce((a, b) => a + b, 0);
