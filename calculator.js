@@ -1,5 +1,8 @@
 export function addStrings(values) {
   if (values === "") return 0;
+  if (values.endsWith(",") || values.endsWith("\n")) {
+    throw new Error("Invalid input");
+  }
   const unformValues = values.replace(/\n/g, ",");
   const numberStrings = unformValues.split(",");
   const numbers = numberStrings.map((x) => +x);
