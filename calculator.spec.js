@@ -33,11 +33,11 @@ describe("3. addStrings", () => {
 
 describe("4. addStrings", () => {
   it("Add validation to not to allow a separator at the end", () => {
-    expect(addStrings(",")).toThrow();
-    expect(addStrings("1,")).toThrow();
-    expect(addStrings("\n")).toThrow();
-    expect(addStrings("1\n")).toThrow();
-    expect(addStrings("1,2,3,")).toThrow();
-    expect(addStrings("1,2,3\n")).toThrow();
+    expect(() => addStrings(",")).toThrow();
+    expect(() => addStrings("1,")).toThrow();
+    expect(() => addStrings("\n")).toThrow();
+    expect(() => addStrings("1\n")).toThrow();
+    expect(() => addStrings("1,2,3,")).toThrow();
+    expect(() => addStrings("1,2,3\n")).toThrow();
   });
 });
