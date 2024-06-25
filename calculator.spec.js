@@ -22,3 +22,11 @@ describe("2. addStrings", () => {
     expect(addStrings("")).toBe(0);
   });
 });
+
+describe("3. addStrings", () => {
+  it("3.0 Allow the add method to handle newlines as separators, instead of comas", () => {
+    expect(addStrings("1\n2,3")).toBe(6);
+    expect(addStrings("1\n2\n3")).toBe(6);
+    expect(addStrings("1,2,3")).toBe(6);
+  });
+});
