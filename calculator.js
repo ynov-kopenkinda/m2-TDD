@@ -22,8 +22,12 @@ export function addStrings(values) {
     [cleanValue]
   );
   const numbers = numberStrings.map((x) => +x);
-  if (numbers.some((x) => Number.isNaN(x)) || numbers.some((x) => x < 0)) {
+  if (numbers.some((x) => Number.isNaN(x))) {
     throw new Error("Invalid input");
+  }
+  const negatives = numbers.filter((x) => x < 0);
+  if (negatives.length > 0) {
+    throw new Error(`Negatives not allowed, ${negatives.join(",")}`);
   }
   const summ = numbers.reduce((a, b) => a + b, 0);
   return summ;
