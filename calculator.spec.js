@@ -41,3 +41,13 @@ describe("4. addStrings", () => {
     expect(() => addStrings("1,2,3\n")).toThrow();
   });
 });
+
+describe("5. addStrings", () => {
+  it("5.0 Allow the add method to handle a different delimiter <format: //[delimiter]\n[numbers]>", () => {
+    expect(addStrings("//;\n1;2")).toBe(3);
+    expect(addStrings("//;\n1;2;3")).toBe(6);
+    expect(addStrings("//;\n1;2;3;4")).toBe(10);
+    expect(addStrings("//;\n1;2;3;4;5")).toBe(15);
+    expect(addStrings("//|\n1|2|3|4|5")).toBe(15);
+  });
+});
