@@ -51,6 +51,9 @@ describe("5. addStrings", () => {
   });
   it("5.1 Allow the add method to handle a different delimiter <format: //[delimiter]\n[numbers]>", () => {
     expect(addStrings("//|\n1|2")).toBe(3);
-    expect(() => addStrings("//test\n1test2,3")).toThrow(6);
+    expect(addStrings("//;\n1;3")).toBe(4);
+    expect(addStrings("//|\n1|2|3")).toBe(6);
+    expect(addStrings("//sep\n2sep5")).toBe(7);
+    expect(() => addStrings("//|\n1|2,3")).toThrow();
   });
 });
