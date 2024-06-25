@@ -57,3 +57,11 @@ describe("5. addStrings", () => {
     expect(() => addStrings("//|\n1|2,3")).toThrow();
   });
 });
+
+describe("6. addStrings", () => {
+  it("6.0 should throw an error if a negative number is passed", () => {
+    expect(() => addStrings("-1")).toThrow();
+    expect(() => addStrings("1,-2")).toThrow();
+    expect(() => addStrings("-1,-2")).toThrow();
+  });
+});
