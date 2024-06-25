@@ -11,3 +11,14 @@ describe("1. addStrings", () => {
     expect(addStrings("1,2")).toBe(3);
   });
 });
+
+describe("2. addStrings", () => {
+  it("2.0 should handle any number of arguments", () => {
+    expect(addStrings("1,2,3")).toBe(6);
+    expect(addStrings("1,3")).toBe(4);
+    expect(addStrings("1,4")).toBe(5);
+    expect(addStrings("4")).toBe(4);
+    expect(addStrings("0")).toBe(0);
+    expect(addStrings("")).toBe(0);
+  });
+});
